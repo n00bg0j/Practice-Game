@@ -10,8 +10,6 @@ public abstract class Character {
 		this.Pos[0] = x;
 		this.Pos[1] = y;
 	}
-	// move
-	public abstract void Move();
-	// attack
-	public abstract void Attack();
+	public abstract void Move(MonsterGame game);
+	public abstract void Attack(MonsterGame game);
 }

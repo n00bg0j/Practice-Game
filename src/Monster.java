@@ -7,14 +7,13 @@ public class Monster extends Character {
 	}
 
 	@Override
-	public void Move() {
+	public void Move(MonsterGame game) {
 		
 	}
 
 	@Override
-	public void Attack() {
-		String[][] tempBoard = getGameBoard();
-		// dmg
+	public void Attack(MonsterGame game) {
+		// damage
 		int dmg = RandIntGen.randInt(5, 25);
 		// attack if character is adjacent
 		int[] temp = new int[2];
@@ -22,10 +21,12 @@ public class Monster extends Character {
 		temp[1] = -1;
 		for (int num : temp) {
 			for (int numb : temp) {
-				if (tempBoard[Pos[0] - num][Pos[1] - num] == "P") {
-					player.HP - 
+				int i = Pos[0] - num;
+				int j = Pos[1] - numb;
+				if (game.gameState[i][j] == "P") {
+					game.player.HP -= dmg;
 				}
-		
+			}
+		}
 	}
-
 }

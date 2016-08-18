@@ -4,9 +4,9 @@ import java.util.Random;
 public class MonsterGame {
 	// state of game board, make it static!
 	String[][] gameState = new String[10][10];
-	// coordinates of player
+	// player for this game
 	Player player;
-	// coordinates of monsters
+	// list of monsters
 	ArrayList<Monster> monsterList;
 
 	// use default constructor for MonsterGame
@@ -28,9 +28,9 @@ public class MonsterGame {
 	}
 	// generate a new board, overloading - BAD DESIGN?
 	public void GenerateBoard(int numWalls, int numMonsters) {
-		for (String[] row : gameState) {
-			for (String element : row) {
-				element = " ";
+		for (int i = 0; i < gameState.length; i++) {
+			for (int j = 0; j < gameState[i].length; j++)  {
+				gameState[i][j] = " ";
 			}
 		}
 		// generate numWalls number of walls
@@ -40,8 +40,13 @@ public class MonsterGame {
 	}
 	
 	// create character
-	public void CreatePlayer() {
-		
+	public void CreatePlayer(String name) {
+		// need to generate random coordinate for player
+		int i = RandIntGen.randInt(0, 9);
+		int j = RandIntGen.randInt(0, 9);
+		// set the player as this games player!
+		gameState[i][j] = "P";
+		player = new Player(name, i, j);
 	}
 	
 	// display game state to user
