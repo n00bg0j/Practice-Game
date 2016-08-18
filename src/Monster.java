@@ -1,8 +1,8 @@
 
 public class Monster extends Character {
 
-	public Monster(int x, int y) {
-		super("Faggit", x, y);
+	public Monster(MonsterGame game, int x, int y) {
+		super(game, "Faggit", x, y);
 		this.HP = RandIntGen.randInt(100, 500);
 	}
 

@@ -39,13 +39,13 @@ public class MonsterGame {
 	}
 	
 	// create character
-	public void CreatePlayer(String name, String Class) {
+	public Player CreatePlayer(MonsterGame game, String name, String Class) {
 		// need to generate random coordinate for player
 		int i = RandIntGen.randInt(0, 9);
 		int j = RandIntGen.randInt(0, 9);
 		// set the player as this games player!
 		gameState[i][j] = "P";
-		player = new Player(name, i, j, Class);
+		return player = new Player(game, name, i, j, Class);
 	}
 	
 	// display game state to user
