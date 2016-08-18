@@ -2,21 +2,30 @@ import java.util.Random;
 
 public class MonsterGame {
 	// state of game board
-	char[][] gameState = new char[10][10];
+	String[][] gameState = new String[10][10];
 	// coordinates of player
 	int[] playerCoord;
 	// coordinates of monsters
 	int[][] monsterCoords;
-	// random generator
-	Random rand = new Random();
-	
+
 	// use default constructor for MonsterGame
 
 	// generate a new board
 	public void GenerateBoard() {
 		// randomly generate 50 - 70 walls
-		
+		int numWalls = RandIntGen.randInt(50, 70);
+		// add the walls to the game state!
+		for (int i = 0; i < numWalls; i++) {
+			int x = RandIntGen.randInt(0, 10);
+			int y = RandIntGen.randInt(0, 10);
+			while (gameState[x][y] == "X") {
+				x = RandIntGen.randInt(0, 10);
+				y = RandIntGen.randInt(0, 10);
+			}
+			gameState[x][y] = "X";
+		}
 		// randomly generate 10 - 15 monsters
+		int numMonsters = RandIntGen.randInt(10, 20);
 	}
 	
 	public void GenerateBoard(int numWalls, int numMonsters) {
