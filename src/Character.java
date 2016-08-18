@@ -1,15 +1,30 @@
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Character {
 	int HP;
-	String Status;
 	String Name;
 	int[] Pos;
+	Boolean Alive = true;
+	Map<String, int[]> directions = new HashMap<String, int[]>();
 	
 	public Character(String name, int x, int y) {
 		this.Name = name;
 		this.Pos[0] = x;
 		this.Pos[1] = y;
 	}
-	public abstract void Move(MonsterGame game);
-	public abstract void Attack(MonsterGame game);
+
+	public void Move(MonsterGame game, String direction) {
+		if (direction == "up") {
+			this.Pos[0] += 1;
+		} else if (direction == "down") {
+			this.Pos[0] += -1;	
+		} else if (direction == "left") {
+			this.Pos[1] += -1;			
+		} else if (direction == "right") {
+			this.Pos[1] += 1;			
+		} else {
+			System.out.println("Invalid Move");
+		}
+	}
 }

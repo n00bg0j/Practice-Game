@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Random;
 
 public class MonsterGame {
 	// state of game board, make it static!
@@ -7,7 +6,7 @@ public class MonsterGame {
 	// player for this game
 	Player player;
 	// list of monsters
-	ArrayList<Monster> monsterList;
+	ArrayList<Monster> monstersLeft;
 
 	// use default constructor for MonsterGame
 
@@ -40,13 +39,13 @@ public class MonsterGame {
 	}
 	
 	// create character
-	public void CreatePlayer(String name) {
+	public void CreatePlayer(String name, String Class) {
 		// need to generate random coordinate for player
 		int i = RandIntGen.randInt(0, 9);
 		int j = RandIntGen.randInt(0, 9);
 		// set the player as this games player!
 		gameState[i][j] = "P";
-		player = new Player(name, i, j);
+		player = new Player(name, i, j, Class);
 	}
 	
 	// display game state to user

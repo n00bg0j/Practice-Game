@@ -6,12 +6,22 @@ public class Monster extends Character {
 		this.HP = RandIntGen.randInt(100, 500);
 	}
 
-	@Override
 	public void Move(MonsterGame game) {
-		
+		int[] temp = new int[2];
+		temp[0] = 1;
+		temp[1] = -1;
+		for (int num : temp) {
+			for (int numb : temp) {
+				int i = Pos[0] - num;
+				int j = Pos[1] - numb;
+				if (game.gameState[i][j] == " ") {
+					this.Pos[0] = i;
+					this.Pos[1] = j;
+				}
+			}
+		}
 	}
 
-	@Override
 	public void Attack(MonsterGame game) {
 		// damage
 		int dmg = RandIntGen.randInt(5, 25);
