@@ -3,6 +3,7 @@ import java.util.Map;
 
 public class Player extends Character {
 	
+	String name;
 	int MP;
 	Map<String, String[]> skillSet = new HashMap<String, String[]>();
 	Map<String, Integer> dmgList = new HashMap<String, Integer>();
@@ -12,15 +13,36 @@ public class Player extends Character {
 	int baseDMG;
 	
 	public Player(MonsterGame game, String name, String Class) {
-		super(name);
+		super(Class);
+		this.name = name;
 		this.HP = RandIntGen.randInt(1000, 1500);
 		this.MP = RandIntGen.randInt(150, 200);
 		generateSkillSet(Class);
 		int x = RandIntGen.randInt(0, 9);
 		int y = RandIntGen.randInt(0, 9);
-		game.gameState[x][y] = "P";
+		
 	}
-
+	
+	public void Move(MonsterGame game, String direction) {
+		int oldX = game.player.Pos[0];
+		int oldY = game.player.Pos[1];
+		int newX = game.player.Pos[0];
+		int newY = game.player.Pos[1];
+		if (direction.equalsIgnoreCase("Up")) {
+			newY += 1;
+		} else if (direction.equalsIgnoreCase("Down")) {
+			newY += -1;	
+		} else if (direction.equalsIgnoreCase("Left")) {
+			newX += -1;			
+		} else if (direction.equalsIgnoreCase("Right")) {
+			newX += 1;			
+		} else {
+			System.out.println("Invalid Move");
+		}
+		game.gameState[oldX][oldY] = " ";
+		game.gameState[newX][newY] = "P";
+	}
+	
 	public void Attack(MonsterGame game, String direction, String Attack) {
 		int i = 0;
 		int j = 0;
