@@ -6,7 +6,7 @@ public class MonsterGame {
 	// player for this game
 	Player player;
 	// list of monsters
-	ArrayList<Monster> monstersLeft;
+	ArrayList<Monster> monstersLeft = new ArrayList<Monster>(30);
 
 	// use default constructor for MonsterGame
 
@@ -18,11 +18,11 @@ public class MonsterGame {
 			}
 		}
 		// randomly generate 50 - 70 walls
-		int numWalls = RandIntGen.randInt(50, 70);
+		int numWalls = RandIntGen.randInt(15, 30);
 		// add the walls to the game state!
 		GenerateWall(numWalls);
 		// randomly generate 10 - 15 monsters
-		int numMonsters = RandIntGen.randInt(10, 20);
+		int numMonsters = RandIntGen.randInt(6, 10);
 		GenerateMonster(numMonsters);
 	}
 	// generate a new board, overloading - BAD DESIGN?
@@ -40,12 +40,8 @@ public class MonsterGame {
 	
 	// create character
 	public Player CreatePlayer(MonsterGame game, String name, String Class) {
-		// need to generate random coordinate for player
-		int i = RandIntGen.randInt(0, 9);
-		int j = RandIntGen.randInt(0, 9);
 		// set the player as this games player!
-		gameState[i][j] = "P";
-		return player = new Player(game, name, i, j, Class);
+		return player = new Player(game, name, Class);
 	}
 	
 	// display game state to user
@@ -87,10 +83,9 @@ public class MonsterGame {
 				x = RandIntGen.randInt(0, 9);
 				y = RandIntGen.randInt(0, 9);
 			}
+			Monster newMonster = new Monster(x, y);
+			monstersLeft.add(newMonster);
 			gameState[x][y] = "M";
-			//Monster tempMonster = new Monster(x, y);
-			//monsterList.add(tempMonster); 
-			// create monster at these coordinates
 		}
 	}
 	
